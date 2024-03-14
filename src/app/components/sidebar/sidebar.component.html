@@ -1,0 +1,18 @@
+<div class="col-md-3">
+    <h2 class="grid-title"style="color:white"><i class="fa fa-inbox" ></i> Inbox</h2>
+    <a class="btn btn-block btn-primary"  routerLink="/compose" ><i
+            class="fa fa-pencil"></i>&nbsp;&nbsp;Nouveau mail</a>
+
+    <hr>
+
+    <div>
+        <ul class="nav nav-pills nav-stacked li-style" style=" font-weight: bold; color:white" >
+            <li class="header">Menu</li>
+            <li  class="active-li" routerLink="/inbox"><a><i class="fa fa-inbox"></i> Inbox (14)</a></li>
+            <li (click)="unread()" ><a><i class="fa fa-star"></i> Lu(s)</a></li>
+            <li (click)="important()" ><a><i class="fa fa-bookmark"></i> Important(s)</a></li>
+            <li (click)="send()" ><a><i class="fa fa-mail-forward"></i> Envoyé(s)</a></li>
+            <li (click)="draft()" ><a><i class="fa fa-pencil-square-o"></i> Brouillon(s)</a></li>
+        </ul>
+    </div>
+</div>
