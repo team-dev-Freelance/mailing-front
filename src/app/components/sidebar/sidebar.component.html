@@ -1,18 +1,53 @@
-<div class="col-md-3">
-    <h2 class="grid-title"style="color:white"><i class="fa fa-inbox" ></i> Inbox</h2>
-    <a class="btn btn-block btn-primary"  routerLink="/compose" ><i
-            class="fa fa-pencil"></i>&nbsp;&nbsp;Nouveau mail</a>
 
-    <hr>
+<nav id="sidebar" class="sidebar js-sidebar">
+  <div class="sidebar-content js-simplebar">
+    <a class="sidebar-brand" href="">
+      <span class="align-middle">Mail Sec</span>
+    </a>
 
-    <div>
-        <ul class="nav nav-pills nav-stacked li-style" style=" font-weight: bold; color:white" >
-            <li class="header">Menu</li>
-            <li  class="active-li" routerLink="/inbox"><a><i class="fa fa-inbox"></i> Inbox (14)</a></li>
-            <li (click)="unread()" ><a><i class="fa fa-star"></i> Lu(s)</a></li>
-            <li (click)="important()" ><a><i class="fa fa-bookmark"></i> Important(s)</a></li>
-            <li (click)="send()" ><a><i class="fa fa-mail-forward"></i> Envoyé(s)</a></li>
-            <li (click)="draft()" ><a><i class="fa fa-pencil-square-o"></i> Brouillon(s)</a></li>
-        </ul>
-    </div>
-</div>
+    <ul class="sidebar-nav">
+      <!-- <li class="sidebar-header">
+        Pages
+      </li> -->
+      <li class="sidebar-item active">
+        <a class="sidebar-link "  routerLink="/compose">
+          <i class="align-middle me-2" data-feather="message-square"></i> <span  class="align-middle">Nouveau mail</span>
+        </a>
+      </li>
+      <li class="sidebar-item ">
+        <a class="sidebar-link"  routerLink="/inbox">
+          <i class="fa fa-inbox align-middle"></i> <span  class="align-middle">Inbox (14)</span>
+        </a>
+      </li>
+
+      <li class="sidebar-item" (click)="read()">
+        <a class="sidebar-link" >
+          <i class="fa fa-star align-middle"></i>  <span class="align-middle">Lu(s)</span>
+        </a>
+      </li>
+      
+      <li class="sidebar-item" (click)="important()">
+        <a class="sidebar-link" >
+          <i class="fa fa-bookmark align-middle"></i>  <span class="align-middle">Important(s)</span>
+        </a>
+      </li>
+      <li class="sidebar-item" (click)="send()">
+        <a class="sidebar-link" >
+          <i class="align-middle me-2" data-feather="corner-up-right"></i>  <span class="align-middle">Envoyé(s)</span>
+        </a>
+      </li>
+      <li class="sidebar-item" (click)="draft()">
+        <a class="sidebar-link" >
+          <i class="align-middle me-2" data-feather="clipboard"></i>  <span class="align-middle">Brouillon(s)</span>
+        </a>
+      </li>
+      <li class="sidebar-item" >
+        <a class="sidebar-link" >
+          <i class="align-middle me-2" data-feather="users"></i>  <span class="align-middle">Gestion compte</span>
+        </a>
+      </li>
+
+    </ul>
+
+  </div>
+</nav>

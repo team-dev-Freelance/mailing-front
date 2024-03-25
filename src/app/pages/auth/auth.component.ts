@@ -1,12 +1,29 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ReactiveFormsModule, FormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-auth',
   standalone: true,
-  imports: [],
+  imports: [ReactiveFormsModule,FormsModule],
   templateUrl: './auth.component.html',
   styleUrl: './auth.component.css'
 })
-export class AuthComponent {
+export class AuthComponent implements OnInit {
+
+
+  form!:FormGroup
+  ngOnInit(): void {
+    throw new Error('Method not implemented.');
+  }
+  onForm(){
+    this.form = new FormGroup({
+      username : new FormControl('',[Validators.required]),
+      password : new FormControl('',[Validators.required])
+    })
+  }
+
+  submit() {
+    throw new Error('Method not implemented.');
+    }
 
 }

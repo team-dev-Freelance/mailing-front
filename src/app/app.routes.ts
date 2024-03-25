@@ -3,6 +3,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { ComposeComponent } from './pages/compose/compose.component';
 import { ReadComponent } from './pages/read/read.component';
 import { OthersMessageComponent } from './pages/others-message/others-message.component';
+import { AuthComponent } from './pages/auth/auth.component';
 
 export const routes: Routes = [
 
@@ -21,5 +22,9 @@ export const routes: Routes = [
     {
         path: "mail/:slug",
         component :OthersMessageComponent
+    },
+    {
+        path: '',
+        component : AuthComponent
     }
 ];

@@ -1,5 +1,5 @@
+<!-- 
 
-<br><br>
 <div class="col-md-9" style="background-color: rgba(255, 255, 255, 0.7); padding: 20px; border-radius: 15px;">
     <div class="row">
         <div class="col-sm-6">
@@ -53,7 +53,7 @@
                     <td class="subject" routerLink="/read"><a >Lorem ipsum dolor sit amet, consectetur
                             adipisicing elit, sed </a></td>
                     <td class="time">08:30 PM</td>
-                </tr><!-- 
+                </tr>
                 <tr>
                     <td class="action"><input type="checkbox" /></td>
                     <td class="action"><i class="fa fa-star-o"></i></td>
@@ -134,7 +134,7 @@
                     <td class="subject"><a href="#">Lorem ipsum dolor sit amet, consectetur
                             adipisicing elit, sed </a></td>
                     <td class="time">08:30 PM</td>
-                </tr> -->
+                </tr>
             </tbody>
         </table>
     </div>
@@ -148,4 +148,61 @@
         <li><a href="#">5</a></li>
         <li><a href="#">»</a></li>
     </ul>
+</div> -->
+
+
+<div class="wrapper">
+    <app-sidebar></app-sidebar>
+    <div class="main">
+        <app-header></app-header>
+        <main class="content">
+            <div class="container-fluid p-0">
+
+                <h1 class="h3 mb-3"><strong>Message</strong> reçu(s)</h1>
+
+
+                <div class="row">
+                    
+                    <div class="col-12 col-lg-12 col-xxl-12 d-flex">
+                        <div class="card flex-fill">
+
+                            <table class="table  my-0" id="example2" >
+
+                                <tbody style="color:black;">
+                                    <tr>
+                                        <td class="action"><input type="checkbox" /></td>
+                                        <td class="action"><i class="align-middle me-2" data-feather="star"></i></td>
+                                        <td class="action"><i class="align-middle me-2" data-feather="bookmark"></i></td>
+                                        <td class="name" routerLink="/read"><a>Larry Gardner</a></td>
+                                        <td class="subject" routerLink="/read"><a>Lorem ipsum dolor sit amet,
+                                                consectetur
+                                                adipisicing elit, sed </a></td>
+                                        <td class="action text-danger">Urgent</td>
+                                        <td class="time">08:30 PM</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="action"><input type="checkbox" /></td>
+                                        <td class="action"><i class="align-middle me-2" data-feather="star"></i></td>
+                                        <td class="action"><i class="align-middle me-2" data-feather="bookmark"></i></td>
+                                        <td class="name" routerLink="/read"><a>Larry Gardner</a></td>
+                                        <td class="subject" routerLink="/read"><a>Lorem ipsum dolor sit amet,
+                                                consectetur
+                                                adipisicing elit, sed </a></td>
+                                        <td class="action text-warning">Moins urgent</td>
+                                        <td class="time">08:30 PM</td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </main>
+        <app-footer></app-footer>
+    </div>
 </div>
