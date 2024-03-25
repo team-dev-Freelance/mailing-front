@@ -21,9 +21,9 @@ export class ComposeComponent implements OnInit{
     this.form = new FormGroup({
       to:new FormControl([],[Validators.required]),
       from:new FormControl('',[Validators.required]),
-      object:new FormControl([],),
+      object:new FormControl(''),
       status:new FormControl('',[Validators.required]),
-      content:new FormControl([],[Validators.required]),
+      content:new FormControl('',[Validators.required]),
       
     })
   }

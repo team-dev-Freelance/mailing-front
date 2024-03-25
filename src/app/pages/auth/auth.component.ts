@@ -13,7 +13,7 @@ export class AuthComponent implements OnInit {
 
   form!:FormGroup
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+    this.onForm()
   }
   onForm(){
     this.form = new FormGroup({
