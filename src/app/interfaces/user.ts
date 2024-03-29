@@ -1,5 +1,8 @@
 export interface User {
     id? : number,
-    username: string,
-    password :string
+    nom: string,
+    password :string,
+    email: string,
+    active?: boolean,
+    role?: string,
 }

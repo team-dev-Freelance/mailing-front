@@ -1,12 +1,12 @@
 import { User } from "./user"
 
 export interface Message {
-    id?:number,
-    object ?: string,
-    description:string
-    from:User,
-    to:User,
-    createdAt? : any,
-    status : string
-    
+    id?: number,
+    emailExpediteur: string,
+    objet: string,
+    content: string,
+    statut: any,
+    urlsJointPiecesstring?: string[],
+    date: string,
+    utilisateur: User
 }

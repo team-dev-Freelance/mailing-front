@@ -16,7 +16,7 @@ export const routes: Routes = [
         component : ComposeComponent
     },
     {
-        path: "read",
+        path: "read/:id",
         component :ReadComponent
     },
     {
