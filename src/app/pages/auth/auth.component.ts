@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ReactiveFormsModule, FormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
+import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-auth',
@@ -10,6 +12,7 @@ import { ReactiveFormsModule, FormsModule, FormGroup, FormControl, Validators } 
 })
 export class AuthComponent implements OnInit {
 
+  constructor(private authService:AuthService, private router:Router){}
 
   form!:FormGroup
   ngOnInit(): void {
@@ -23,7 +26,19 @@ export class AuthComponent implements OnInit {
   }
 
   submit() {
-    throw new Error('Method not implemented.');
+         const auth = {
+          email : this.form.value.username,
+          password : this.form.value.password,
+         }
+
+      this.authService.login(auth).subscribe({
+        next:res =>{
+          this.router.navigate(['/inbox'])
+        },
+        error:err =>{
+          alert("Veuillez entrer vos informations")
+        }
+      })        
     }
 
 }

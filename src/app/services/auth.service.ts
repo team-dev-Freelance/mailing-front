@@ -46,14 +46,14 @@ export class AuthService {
 
           if (!user) {
             this.loading = false;
-            this.router.navigate(['login']);
+            this.router.navigate(['']);
           } else {
-            console.log(user.role);
+            
             
             // Setting token access and session variables
             localStorage.setItem('accessToken', user.accessToken);
             localStorage.setItem('refreshToken', user.refreshToken);
-            // sessionStorage.setItem('role', user.role);
+            localStorage.setItem('id', user.id);
             // sessionStorage.setItem('userId', user.id);
             return user;
           }
@@ -74,7 +74,7 @@ export class AuthService {
         localStorage.removeItem('refreshToken');
         localStorage.clear();
         sessionStorage.clear();
-        this.router.navigate(['/login']);
+        this.router.navigate(['/']);
       } else {
         // this.notify.error('Server Error!', 'Une erreur interne est suvenue au niveau du serveur. Veuillez recommencer !');
       }

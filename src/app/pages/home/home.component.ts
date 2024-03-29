@@ -17,22 +17,37 @@ import { api as apiConfig } from '../../constant';
 })
 export class HomeComponent implements OnInit {
 
+
   messages!: any
 
   constructor(private serviceService: ServicesService,private router: Router) {
 
+    
+    
+
   }
   ngOnInit(): void {
     this.unreadMail()
+    const url = `${apiConfig.admin.user.getOneId}`;
+    this.serviceService.getResource(url, localStorage.getItem('id')).subscribe({
+      next: res => {
+        localStorage.setItem('nom',res.body.nom)
+        localStorage.setItem('email',res.body.email)
+
+    
+    
+
+
+      },
+    });
+
   }
   unreadMail() {
-    const userId = 1;
+    const userId = localStorage.getItem('id');
     const url = `${apiConfig.message.getBoite}`;
     this.serviceService.getResources(url + userId ).subscribe({
       next: res => {
         this.messages = res.body;
-        console.log(res.body);
-
 
       },
     });
@@ -41,6 +56,24 @@ export class HomeComponent implements OnInit {
   read(arg: any) {
     this.router.navigate(['read',arg]); 
   }
+  remove(arg: any) {
+    const url = `${apiConfig.message.deleteMail}`;
+
+
+    this.serviceService.deleteResource(url , arg ).subscribe({
+      next: res => {
+        alert("Suppression faites")
+        window.location.reload()
+      },
+      error :err  =>{
+        console.log("Erreur de suppression");
+        alert("Suppression faites")
+
+        window.location.reload()
+        
+      }
+    });
+    }
 
 
 

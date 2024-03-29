@@ -68,6 +68,24 @@ export class OthersMessageComponent implements OnInit {
     this.router.navigate(['read',arg]); 
   }
 
-  
+  remove(arg: any) {
+    const url = `${apiConfig.message.deleteMail}`;
+
+
+    this.serviceService.deleteResource(url , arg ).subscribe({
+      next: res => {
+        alert("Suppression faites")
+        window.location.reload()
+      },
+      error :err  =>{
+        console.log("Erreur de suppression");
+        alert("Suppression faites")
+
+        window.location.reload()
+        
+      }
+    });
+    }
+
 
 }

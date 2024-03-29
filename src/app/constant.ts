@@ -29,9 +29,9 @@ export const api = {
   home: {},
 
   auth: {
-    login: '/auth/authenticate',
-    logout: '/auth/logout',
-    register: '/auth/register',
+    login: 'auth/authenticate',
+    logout: 'auth/logout',
+    register: 'auth/register',
   },
 
   admin: {
@@ -39,6 +39,7 @@ export const api = {
     user: {
       create: '',
       getOne: 'admin/user/findByEmail/',
+      getOneId: 'admin/user/findById',
       getAll: 'admin/user/findAll',
       update: '',
       delete: ''

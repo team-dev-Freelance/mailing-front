@@ -1,21 +1,39 @@
-import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { ServicesService } from '../../services/services.service';
+import { api as apiConfig } from '../../constant';
 
 @Component({
   selector: 'app-sidebar',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive],
+  imports: [CommonModule,RouterLink, RouterLinkActive],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.css'
 })
-export class SidebarComponent {
+export class SidebarComponent  implements OnInit{
   isReadActive: boolean = false;
   isImportantActive: boolean = false;
   isSendActive: boolean = false;
   isDraftActive: boolean = false;
+  messages!:any
 
-  constructor(private router: Router) {}
+  constructor(private router: Router,private serviceService: ServicesService) {}
+  ngOnInit(): void {
+    this.unreadMail()
+  }
 
+  unreadMail() {
+    const userId = 1;
+    const url = `${apiConfig.message.getBoite}`;
+    this.serviceService.getResources(url + userId ).subscribe({
+      next: res => {
+        this.messages = res.body;
+
+
+      },
+    });
+  }
   read() {
     this.isReadActive = true;
     this.isImportantActive = false;
@@ -39,6 +57,7 @@ export class SidebarComponent {
     this.isDraftActive = false;
     this.router.navigate(['mail','send']); 
   }
+ 
 
   draft() {
     this.isReadActive = false;

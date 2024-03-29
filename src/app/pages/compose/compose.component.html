@@ -1,5 +1,3 @@
-
-
 <div class="wrapper">
     <app-sidebar></app-sidebar>
     <div class="main">
@@ -11,7 +9,7 @@
 
 
                 <div class="row">
-                    <form [formGroup]="form" (ngSubmit)="submit()">
+                    <form [formGroup]="form" (ngSubmit)="submit(0)">
                         <div class="card">
                             <div class="card-header">
                             </div>
@@ -45,7 +43,7 @@
                                 </div>
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-success">Envoyé</button> &nbsp;&nbsp;
-                                    <button class="btn btn-light">Brouillon</button>&nbsp;&nbsp;
+                                    <button class="btn btn-light" (click)="draft(1)">Brouillon</button>&nbsp;&nbsp;
                                     <button routerLink="/inbox" class="btn btn-danger">Annuler</button>
                                 </div>
 
