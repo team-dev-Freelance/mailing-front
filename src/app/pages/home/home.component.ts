@@ -11,7 +11,7 @@ import { api as apiConfig } from '../../constant';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule,RouterLink, RouterLinkActive, SidebarComponent, HeaderComponent, FooterComponent],
+  imports: [CommonModule,RouterLink, RouterLinkActive, SidebarComponent, HeaderComponent, FooterComponent,],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })

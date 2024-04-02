@@ -1,17 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { ReactiveFormsModule, FormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
-import { AuthService } from '../../services/auth.service';
+import { FormGroup, FormControl, Validators, ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
-  selector: 'app-auth',
+  selector: 'app-sign-up',
   standalone: true,
-  imports: [ReactiveFormsModule,FormsModule,RouterLink],
-  templateUrl: './auth.component.html',
-  styleUrl: './auth.component.css'
+  imports: [RouterLink,ReactiveFormsModule,FormsModule],
+  templateUrl: './sign-up.component.html',
+  styleUrl: './sign-up.component.css'
 })
-export class AuthComponent implements OnInit {
-
+export class SignUpComponent  implements OnInit{
   constructor(private authService:AuthService, private router:Router){}
 
   form!:FormGroup
@@ -40,5 +39,4 @@ export class AuthComponent implements OnInit {
         }
       })        
     }
-
 }

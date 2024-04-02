@@ -15,7 +15,17 @@
                             </div>
                             <div class="card-body">
                                 <div class="mb-3">
-                                    <label class="form-label">A</label>
+                                    <label class="form-label">Role</label>
+
+                                    <select formControlName="status" class="form-control">
+                                        <option value="Tres urgent">Directeur</option>
+                                        <option value="Vice">Vice directeur</option>
+                                        <option value="Moins urgent">Chef de departement</option>
+                                        <option value="Moins urgent">Chef de service</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Destinataire</label>
 
                                     <!-- <select formControlName="toMail" class="form-control select2" multple="multiple" -->
                                     <select formControlName="toMail" class="form-control " multple="multiple"
@@ -40,6 +50,10 @@
                                 <div class="mb-3">
                                     <textarea formControlName="content" class="form-control" rows="2" cols="10"
                                         placeholder="Votre message"></textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Attacher un fichier</label>
+                                    <input type="file"  class="form-control" (change)="onFileSelected($event)">
                                 </div>
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-success">Envoyé</button> &nbsp;&nbsp;

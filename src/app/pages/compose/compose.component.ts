@@ -14,20 +14,21 @@ import { api as apiConfig } from '../../constant';
   selector: 'app-compose',
   standalone: true,
   imports: [CommonModule, RouterLink, RouterLinkActive, SidebarComponent, HeaderComponent, FooterComponent, ReactiveFormsModule, FormsModule
-    ,
+  ,
   ],
   templateUrl: './compose.component.html',
   styleUrl: './compose.component.css'
 })
 export class ComposeComponent implements OnInit {
 
-
+  selectedFile?: File;
   users!: any[]
   form!: FormGroup
   id: any;
   ngOnInit(): void {
     this.onForm()
     this.allUsers()
+   // this.toastr.success('Hello world!', 'Success');
   }
   constructor(private serviceService: ServicesService) { }
 
@@ -40,6 +41,25 @@ export class ComposeComponent implements OnInit {
       content: new FormControl('', [Validators.required]),
 
     })
+  }
+  
+  onFileSelected(event: any) {
+    const file: File = event.target.files[0];
+
+    console.log();
+    
+    const formData = new FormData();
+    //formData.append('file', file);
+
+   /* this.http.post('URL_du_point_de_fin', formData)
+      .subscribe(
+        (response) => {
+          console.log('Fichier téléchargé avec succès', response);
+        },
+        (error) => {
+          console.error('Erreur lors du téléchargement du fichier', error);
+        }
+      );*/
   }
 
 
