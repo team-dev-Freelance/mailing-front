@@ -10,7 +10,7 @@ import { ServicesService } from '../../services/services.service';
 @Component({
   selector: 'app-read',
   standalone: true,
-  imports: [CommonModule,RouterLink, RouterLinkActive, SidebarComponent, HeaderComponent, FooterComponent],
+  imports: [CommonModule, RouterLink, RouterLinkActive, SidebarComponent, HeaderComponent, FooterComponent],
   templateUrl: './read.component.html',
   styleUrl: './read.component.css'
 })
@@ -24,24 +24,32 @@ export class ReadComponent implements OnInit {
   ngOnInit(): void {
     this.unreadMail()
     this.id = this.route.snapshot.params['id'];
-    //this.message = this.findMessageById(id)
-    //this.read(id)
-    //console.log(this.messages);
-
 
   }
 
   unreadMail() {
-    const userId = 1;
+    const messageId = this.id;
+    const userID = localStorage.getItem('id');
     const url = `${apiConfig.message.getBoite}`;
-    this.serviceService.getResources(url + userId).subscribe({
+    this.serviceService.getResources(url + userID).subscribe({
       next: res => {
         this.messages = res.body;
         this.message = this.messages.find((item: { id: number; }) => this.id == item.id)
-        console.log(this.messages);
+        console.log(this.message);
       },
     });
   }
+  answer(arg: any) {
+    //this.router.navigate(['answer',arg]); 
+    this.router.navigate(['compose',arg]); 
+
+  }
+  transfer(arg: any) {
+    //this.router.navigate(['transfer',arg]); 
+
+  }
+
+  
 
 
 }

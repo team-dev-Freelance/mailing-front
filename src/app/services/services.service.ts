@@ -107,6 +107,18 @@ export class ServicesService {
     };
     return this.http.post<any[]>(this.host + url, data, httpOptions);
   }
+  public saveResourceUpload(url: string, data: any): Observable<any> {
+    //  const authToken = this.getToken();
+    const httpOptions: any = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        //  Authorization: authToken,
+      }),
+      observe: 'response',
+      responseType: 'json',
+    };
+    return this.http.post<any[]>(this.host + url, data);
+  }
 
   public getResources(url: string): Observable<any> {
     //const authToken = this.getToken();

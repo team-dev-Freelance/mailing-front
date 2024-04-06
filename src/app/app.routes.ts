@@ -7,6 +7,8 @@ import { AuthComponent } from './pages/auth/auth.component';
 import { SignUpComponent } from './pages/sign-up/sign-up.component';
 import { AccountComponent } from './pages/account/account.component';
 import { FormAccountComponent } from './pages/form-account/form-account.component';
+import { AnswerComponent } from './pages/answer/answer.component';
+import { TransferComponent } from './pages/transfer/transfer.component';
 
 export const routes: Routes = [
 
@@ -17,6 +19,14 @@ export const routes: Routes = [
     {
         path :"compose",
         component : ComposeComponent
+    },
+    {
+        path :"answer/:id",
+        component : AnswerComponent
+    },
+    {
+        path :"transfer/:id",
+        component : TransferComponent
     },
     {
         path: "read/:id",

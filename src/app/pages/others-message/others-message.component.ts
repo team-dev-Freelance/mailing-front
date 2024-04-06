@@ -38,7 +38,7 @@ export class OthersMessageComponent implements OnInit {
           break;
         case 'send':
           this.slug = " Envoyé(s)";
-          this.mail("envoyer")
+          this.boiteenvoi()
           break;
         case 'important':
           this.slug = " Important(s)";
@@ -59,6 +59,16 @@ export class OthersMessageComponent implements OnInit {
         this.messages = res.body;
         console.log(res.body);
 
+
+      },
+    });
+  }
+  boiteenvoi() {
+    const userId = localStorage.getItem('id');
+    const url = `${apiConfig.message.boiteenvoi}`;
+    this.serviceService.getResources(url + userId ).subscribe({
+      next: res => {
+        this.messages = res.body;
 
       },
     });

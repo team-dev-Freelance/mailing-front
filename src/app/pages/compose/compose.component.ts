@@ -9,12 +9,13 @@ import { CommonModule } from '@angular/common';
 
 import { ServicesService } from '../../services/services.service';
 import { api as apiConfig } from '../../constant';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-compose',
   standalone: true,
   imports: [CommonModule, RouterLink, RouterLinkActive, SidebarComponent, HeaderComponent, FooterComponent, ReactiveFormsModule, FormsModule
-  ,
+    ,
   ],
   templateUrl: './compose.component.html',
   styleUrl: './compose.component.css'
@@ -25,12 +26,16 @@ export class ComposeComponent implements OnInit {
   users!: any[]
   form!: FormGroup
   id: any;
+  userMail = localStorage.getItem('email')
+
+  formData!: FormData;
   ngOnInit(): void {
     this.onForm()
     this.allUsers()
-   // this.toastr.success('Hello world!', 'Success');
+    // this.toastr.success('Hello world!', 'Success');
+
   }
-  constructor(private serviceService: ServicesService) { }
+  constructor(private serviceService: ServicesService,   private http: HttpClient,) { }
 
   onForm() {
     this.form = new FormGroup({
@@ -41,25 +46,24 @@ export class ComposeComponent implements OnInit {
       content: new FormControl('', [Validators.required]),
 
     })
+    this.formData = new FormData()
   }
-  
+
   onFileSelected(event: any) {
     const file: File = event.target.files[0];
 
-    console.log();
-    
-    const formData = new FormData();
-    //formData.append('file', file);
 
-   /* this.http.post('URL_du_point_de_fin', formData)
-      .subscribe(
-        (response) => {
-          console.log('Fichier téléchargé avec succès', response);
-        },
-        (error) => {
-          console.error('Erreur lors du téléchargement du fichier', error);
-        }
-      );*/
+    this.formData.append('file', file);
+
+    /* this.http.post('URL_du_point_de_fin', formData)
+       .subscribe(
+         (response) => {
+           console.log('Fichier téléchargé avec succès', response);
+         },
+         (error) => {
+           console.error('Erreur lors du téléchargement du fichier', error);
+         }
+       );*/
   }
 
 
@@ -74,42 +78,63 @@ export class ComposeComponent implements OnInit {
     });
   }
   submit(arg: any) {
-    const userMail = localStorage.getItem('email');
+
     const userId = localStorage.getItem('id');
-    var status = ""
-    if (arg == 0)
-      status = 'envoyer'
-    else
-      status = 'brouillon'
-    const message = {
-      emailExpediteur: userMail,
-      objet: this.form.value.object,
-      content: this.form.value.content,
-      statut: status,
-      date: new Date(),
-      urlsJointPiecesstring: [''],
+    var status = "envoyer"
 
-      utilisateur: this.findUserIdById(this.form.value.toMail)
+    this.formData.append('objet', this.form.value.object);
+    this.formData.append('content', this.form.value.content);
+    const email = localStorage.getItem('nom');
+    if (email !== null) {
+      this.formData.append('emailExpediteur', email);
     }
-
-    // console.log(message);
-
-    const url = `${apiConfig.message.create}`;
-    this.serviceService.saveResource(url + userId, message).subscribe({
-      next: res => {
-        if (arg == 0)
-          alert("Message envoyé avec succès")
-        else
-          alert("Message Brouillon")
-
+    this.formData.append('userId', this.form.value.toMail);
+    this.formData.forEach((value, key) => {
+      console.log(key + ': ' + value);
+    });
+    const host = `${apiConfig.baseUrl}`;
+    const url = `${apiConfig.message.create}`
+    const httpOptions = {
+      headers: new HttpHeaders({
+        //'Content-Type': 'multipart/form-data',
+        // 'Content-Type': 'application/json', // Si vous envoyez des données JSON
+        // 'Authorization': 'Bearer ' + authToken, // Si vous avez besoin d'une authentification
+      }),
+      observe: 'response' as const,
+      responseType: 'json' as const,
+    };
+    this.http.post(host+url, this.formData)
+       .subscribe(
+         (response) => {
+           console.log('Fichier téléchargé avec succès', response);
+           alert("Message envoyé avec succès")
+ 
         this.form.reset
-
+         },
+         (error) => {
+           console.error('Erreur lors du téléchargement du fichier', error);
+           
+        alert("Error")
+         }
+       );
+   
+    /* const url = `${apiConfig.message.create}`;
+    this.serviceService.saveResource(url + userId, this.formData).subscribe({
+      next: res => {
+        
+          alert("Message envoyé avec succès")
+ 
+        this.form.reset
+ 
       },
       error: err => {
         console.log(err);
-
+        alert("Error")
+ 
       }
-    });
+    }); */
+
+
 
   }
 
@@ -121,8 +146,6 @@ export class ComposeComponent implements OnInit {
 
 
   draft(arg: any) {
-    alert(arg)
-    this.submit(1)
 
   }
 }

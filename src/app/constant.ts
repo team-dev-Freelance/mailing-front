@@ -46,10 +46,11 @@ export const api = {
     },
   },
   message: {
-    create: 'user/mail/add/',
+    create: 'user/mail/add',
     getBoite: 'user/mail/boite/',
+    boiteenvoi: 'user/mail/boiteenvoi/',
     getAllStatus: 'user/mail/findByStatut/',
-    update: 'user/mail/update/',
+    update: 'user/mail/updateStatut/',
     deleteMail: 'user/mail/deleteOneMail/',
     deleteUsersMail: 'user/mail/deleteBoiteUser/'
   },
