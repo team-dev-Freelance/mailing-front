@@ -21,7 +21,7 @@ export class ServicesService {
   ) { }
 
   private getToken() {
-    const accessToken = localStorage.getItem('accessToken');
+    const accessToken = sessionStorage.getItem('accessToken');
     return accessToken ? accessToken : "";
   }
 
@@ -82,11 +82,11 @@ export class ServicesService {
   // end region
 
   public getResource(url: string, id: any): Observable<any> {
-    //const authToken = this.getToken();
+    const authToken = this.getToken();
     const httpOptions: any = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        //   Authorization: authToken,
+        Authorization: 'BEARER ' + authToken,
       }),
       observe: 'response',
       responseType: 'json',
@@ -96,36 +96,26 @@ export class ServicesService {
 
   //-------------------------header httpOptions----------------------
   public saveResource(url: string, data: any): Observable<any> {
-    //  const authToken = this.getToken();
+    const authToken = this.getToken();
+    console.log(authToken);
+    
     const httpOptions: any = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        //  Authorization: authToken,
+        Authorization: 'Bearer ' + authToken,
       }),
       observe: 'response',
       responseType: 'json',
     };
     return this.http.post<any[]>(this.host + url, data, httpOptions);
   }
-  public saveResourceUpload(url: string, data: any): Observable<any> {
-    //  const authToken = this.getToken();
-    const httpOptions: any = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        //  Authorization: authToken,
-      }),
-      observe: 'response',
-      responseType: 'json',
-    };
-    return this.http.post<any[]>(this.host + url, data);
-  }
 
   public getResources(url: string): Observable<any> {
-    //const authToken = this.getToken();
+    const authToken = this.getToken();
     const httpOptions: any = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        // Authorization: authToken,
+        Authorization: 'Bearer ' + authToken,
       }),
       observe: 'response',
       responseType: 'json',
@@ -137,11 +127,11 @@ export class ServicesService {
 
 
   public updateResource(url: string, data: any): Observable<any> {
-    //const authToken = this.getToken();
+    const authToken = this.getToken();
     const httpOptions: any = {
       headers: new HttpHeaders({
         Accept: 'application/json',
-        //   Authorization: authToken,
+        Authorization: 'Bearer ' + authToken,
       }),
       observe: 'response',
       responseType: 'json',
@@ -151,16 +141,30 @@ export class ServicesService {
 
 
   public deleteResource(url: string, id: any) {
-    //const authToken = this.getToken();
+    const authToken = this.getToken();
     const httpOptions: any = {
       headers: new HttpHeaders({
         Accept: 'application/json',
-        //  Authorization: authToken,
+        Authorization: 'Bearer ' + authToken,
       }),
     };
 
     return this.http.delete(this.host + url + id, httpOptions);
   }
+  public saveResourceUpload(url: string, data: any): Observable<any> {
+     const authToken = this.getToken();
+    const httpOptions: any = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + authToken,
+      }),
+      observe: 'response',
+      responseType: 'json',
+    };
+    return this.http.post<any[]>(this.host + url, data,httpOptions);
+  }
+
+  
 
   
 }

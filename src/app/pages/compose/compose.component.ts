@@ -79,7 +79,8 @@ export class ComposeComponent implements OnInit {
   }
   submit(arg: any) {
 
-    const userId = localStorage.getItem('id');
+    const userId = sessionStorage.getItem('id');
+    const authToken = sessionStorage.getItem('accessToken');
     var status = "envoyer"
 
     this.formData.append('objet', this.form.value.object);
@@ -94,16 +95,18 @@ export class ComposeComponent implements OnInit {
     });
     const host = `${apiConfig.baseUrl}`;
     const url = `${apiConfig.message.create}`
+    console.log(authToken);
+    
     const httpOptions = {
       headers: new HttpHeaders({
         //'Content-Type': 'multipart/form-data',
         // 'Content-Type': 'application/json', // Si vous envoyez des données JSON
-        // 'Authorization': 'Bearer ' + authToken, // Si vous avez besoin d'une authentification
+         'Authorization': 'Bearer ' + authToken, // Si vous avez besoin d'une authentification
       }),
       observe: 'response' as const,
       responseType: 'json' as const,
     };
-    this.http.post(host+url, this.formData)
+    this.http.post(host+url, this.formData,httpOptions)
        .subscribe(
          (response) => {
            console.log('Fichier téléchargé avec succès', response);

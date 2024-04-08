@@ -51,9 +51,10 @@ export class AuthService {
             
             
             // Setting token access and session variables
-            localStorage.setItem('accessToken', user.accessToken);
-            localStorage.setItem('refreshToken', user.refreshToken);
-            localStorage.setItem('id', user.id);
+            sessionStorage.setItem('accessToken', user.access_token);
+            sessionStorage.setItem('refreshToken', user.refresh_token);
+            sessionStorage.setItem('role', user.role);
+            sessionStorage.setItem('userId', user.id);
             // sessionStorage.setItem('userId', user.id);
             return user;
           }
@@ -70,9 +71,8 @@ export class AuthService {
       if (res.status == 200) {
         // remove user from local storage to log user out
         // localStorage.removeItem('currentUser');
-        localStorage.removeItem('accessToken');
-        localStorage.removeItem('refreshToken');
-        localStorage.clear();
+        sessionStorage.removeItem('accessToken');
+       sessionStorage.removeItem('refreshToken');
         sessionStorage.clear();
         this.router.navigate(['/']);
       } else {
