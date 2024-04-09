@@ -1,6 +1,5 @@
-import { User } from './../../interfaces/user';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params, Router, RouterLink, RouterLinkActive, TitleStrategy } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { FooterComponent } from '../../components/footer/footer.component';
 import { HeaderComponent } from '../../components/header/header.component';
 import { SidebarComponent } from '../../components/sidebar/sidebar.component';
@@ -9,12 +8,14 @@ import { CommonModule } from '@angular/common';
 
 import { ServicesService } from '../../services/services.service';
 import { api as apiConfig } from '../../constant';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-compose',
   standalone: true,
-  imports: [CommonModule, RouterLink, RouterLinkActive, SidebarComponent, HeaderComponent, FooterComponent, ReactiveFormsModule, FormsModule
+  imports: [CommonModule, RouterLink, RouterLinkActive, SidebarComponent, HeaderComponent, FooterComponent, 
+    ReactiveFormsModule, FormsModule
     ,
   ],
   templateUrl: './compose.component.html',
@@ -32,10 +33,11 @@ export class ComposeComponent implements OnInit {
   ngOnInit(): void {
     this.onForm()
     this.allUsers()
-    // this.toastr.success('Hello world!', 'Success');
+     
+
 
   }
-  constructor(private serviceService: ServicesService,   private http: HttpClient,private router:Router) { }
+  constructor(private toastr: ToastrService,private serviceService: ServicesService,   private http: HttpClient,private router:Router) { }
 
   onForm() {
     this.form = new FormGroup({
@@ -55,15 +57,6 @@ export class ComposeComponent implements OnInit {
 
     this.formData.append('file', file);
 
-    /* this.http.post('URL_du_point_de_fin', formData)
-       .subscribe(
-         (response) => {
-           console.log('Fichier téléchargé avec succès', response);
-         },
-         (error) => {
-           console.error('Erreur lors du téléchargement du fichier', error);
-         }
-       );*/
   }
 
 
@@ -103,31 +96,8 @@ export class ComposeComponent implements OnInit {
 
     console.log(authToken);
     
-    /*const httpOptions = {
-      headers: new HttpHeaders({
-        //'Content-Type': 'multipart/form-data',
-        // 'Content-Type': 'application/json', // Si vous envoyez des données JSON
-         'Authorization': 'Bearer ' + authToken, // Si vous avez besoin d'une authentification
-      }),
-      observe: 'response' as const,
-      responseType: 'json' as const,
-    };
-    this.http.post(host+url, this.formData,httpOptions)
-       .subscribe(
-         (response) => {
-           console.log('Fichier téléchargé avec succès', response);
-           alert("Message envoyé avec succès")
- 
-        this.form.reset
-         },
-         (error) => {
-           console.error('Erreur lors du téléchargement du fichier', error);
-           
-        alert("Error")
-         }
-       );*/
 
-       /*const url = `${apiConfig.message.create}`;
+       const url = `${apiConfig.message.create}`;
        this.serviceService.saveResourceUpload(url,this.formData).subscribe(
         (response) => {
           console.log('Fichier téléchargé avec succès', response);
@@ -140,7 +110,9 @@ export class ComposeComponent implements OnInit {
           
        alert("Error")
         }
-      )*/
+      )
+
+
    
     
 
@@ -156,7 +128,7 @@ export class ComposeComponent implements OnInit {
 
 
   draft() {
-    
+    this.toastr.success('Hello world!', 'Success');
 
   }
 }
