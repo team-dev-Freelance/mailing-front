@@ -16,6 +16,16 @@ import { api as apiConfig } from '../../constant';
   styleUrl: './home.component.css'
 })
 export class HomeComponent implements OnInit {
+important(arg0: any) {
+  const userId = sessionStorage.getItem('userId');
+  const url = `${apiConfig.message.update}`;
+  this.serviceService.getResources(url+ userId +"/statut?statut=important").subscribe({
+    next: res => {
+      alert("Message marqué comme important")
+
+    },
+  });
+}
 
 
   messages!: any
@@ -28,8 +38,9 @@ export class HomeComponent implements OnInit {
   }
   ngOnInit(): void {
     this.unreadMail()
+
     const url = `${apiConfig.admin.user.getOneId}`;
-    this.serviceService.getResource(url, localStorage.getItem('id')).subscribe({
+    this.serviceService.getResource(url, sessionStorage.getItem('userId')).subscribe({
       next: res => {
         localStorage.setItem('nom',res.body.nom)
         localStorage.setItem('email',res.body.email)
@@ -43,7 +54,7 @@ export class HomeComponent implements OnInit {
 
   }
   unreadMail() {
-    const userId = localStorage.getItem('id');
+    const userId = sessionStorage.getItem('userId');
     const url = `${apiConfig.message.getBoite}`;
     this.serviceService.getResources(url + userId ).subscribe({
       next: res => {

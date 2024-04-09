@@ -29,23 +29,24 @@ export class ReadComponent implements OnInit {
 
   unreadMail() {
     const messageId = this.id;
-    const userID = localStorage.getItem('id');
+    const userID = sessionStorage.getItem('userId');
     const url = `${apiConfig.message.getBoite}`;
     this.serviceService.getResources(url + userID).subscribe({
       next: res => {
         this.messages = res.body;
         this.message = this.messages.find((item: { id: number; }) => this.id == item.id)
-        console.log(this.message);
       },
     });
   }
-  answer(arg: any) {
+  answer() {
     //this.router.navigate(['answer',arg]); 
-    this.router.navigate(['compose',arg]); 
+    console.log();
+    
+    //this.router.navigate(['compose',this.message.id]); 
 
   }
-  transfer(arg: any) {
-    //this.router.navigate(['transfer',arg]); 
+  transfer() {
+    //this.router.navigate(['transfer',this.message.id]); 
 
   }
 

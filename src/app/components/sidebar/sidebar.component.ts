@@ -17,16 +17,19 @@ export class SidebarComponent  implements OnInit{
   isSendActive: boolean = false;
   isDraftActive: boolean = false;
   messages!:any
+  messagesLength!:any
+  role!:any
+
 
   constructor(private router: Router,private serviceService: ServicesService) {}
   ngOnInit(): void {
+    this.role = sessionStorage.getItem('role')
     this.unreadMail()
   }
 
   unreadMail() {
-    const userId = 1;
     const url = `${apiConfig.message.getBoite}`;
-    this.serviceService.getResources(url + userId ).subscribe({
+    this.serviceService.getResources(url + sessionStorage.getItem('userId') ).subscribe({
       next: res => {
         this.messages = res.body;
 

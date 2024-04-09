@@ -171,7 +171,7 @@
                                     <tr *ngFor="let item of messages; let i = index;">
                                         <td class="action"><input type="checkbox" /></td>
                                         <td class="action"><i (click)="remove(item.id)" class="fa fa-trash" style="color: red;"></i></td>
-                                        <td class="action"><i class="fa fa-star"></i></td>
+                                        <td class="action"(click)="important(item.id)"><i class="fa fa-star"></i></td>
                                         <td class="action"><i class="fa fa-bookmark-o"></i></td>
                                         <td class="name" (click)="read(item.id)"><a>{{item.emailExpediteur}}</a></td>
                                         <td class="subject"  (click)="read(item.id)"><a>{{item.content | slice:0:100}}</a></td>

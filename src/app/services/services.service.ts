@@ -1,10 +1,9 @@
 import {   api as apiConfig} from './../constant';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
-import { map, share, catchError } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -62,24 +61,7 @@ export class ServicesService {
     return urlWithParams;
   }
 
-  // public  getPVCours(requestHeader: PVCoursRequest): Observable<any> {
-  //     const url = `${this.host}findPVCours`;
   
-  //     // Les informations sont maintenant ajoutées comme en-têtes HTTP
-  //     const httpOptions = {
-  //       headers: new HttpHeaders({
-  //         'session': requestHeader.session.toString(),
-  //         'code': requestHeader.code.toString(),
-  //         'type': requestHeader.type,
-  //         'anneeAca': requestHeader.anneeAca.toString(),
-  //         'parcours': requestHeader.parcours.toString(),
-  //       }),
-  //     };
-  
-  //     return this.http.get<any[]>(url, httpOptions);
-  // }
-  
-  // end region
 
   public getResource(url: string, id: any): Observable<any> {
     const authToken = this.getToken();
@@ -155,7 +137,7 @@ export class ServicesService {
      const authToken = this.getToken();
     const httpOptions: any = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json',
+       // 'Content-Type': 'application/json',
         Authorization: 'Bearer ' + authToken,
       }),
       observe: 'response',

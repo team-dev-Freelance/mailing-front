@@ -1,6 +1,6 @@
 import { User } from './../../interfaces/user';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params, RouterLink, RouterLinkActive, TitleStrategy } from '@angular/router';
+import { ActivatedRoute, Params, Router, RouterLink, RouterLinkActive, TitleStrategy } from '@angular/router';
 import { FooterComponent } from '../../components/footer/footer.component';
 import { HeaderComponent } from '../../components/header/header.component';
 import { SidebarComponent } from '../../components/sidebar/sidebar.component';
@@ -35,7 +35,7 @@ export class ComposeComponent implements OnInit {
     // this.toastr.success('Hello world!', 'Success');
 
   }
-  constructor(private serviceService: ServicesService,   private http: HttpClient,) { }
+  constructor(private serviceService: ServicesService,   private http: HttpClient,private router:Router) { }
 
   onForm() {
     this.form = new FormGroup({
@@ -90,14 +90,20 @@ export class ComposeComponent implements OnInit {
       this.formData.append('emailExpediteur', email);
     }
     this.formData.append('userId', this.form.value.toMail);
+    if(this.selectedFile==null)
+    {
+      this.formData.append('file', '');
+    }
     this.formData.forEach((value, key) => {
       console.log(key + ': ' + value);
     });
-    const host = `${apiConfig.baseUrl}`;
-    const url = `${apiConfig.message.create}`
+   
+   
+
+
     console.log(authToken);
     
-    const httpOptions = {
+    /*const httpOptions = {
       headers: new HttpHeaders({
         //'Content-Type': 'multipart/form-data',
         // 'Content-Type': 'application/json', // Si vous envoyez des données JSON
@@ -119,23 +125,24 @@ export class ComposeComponent implements OnInit {
            
         alert("Error")
          }
-       );
-   
-    /* const url = `${apiConfig.message.create}`;
-    this.serviceService.saveResource(url + userId, this.formData).subscribe({
-      next: res => {
-        
+       );*/
+
+       /*const url = `${apiConfig.message.create}`;
+       this.serviceService.saveResourceUpload(url,this.formData).subscribe(
+        (response) => {
+          console.log('Fichier téléchargé avec succès', response);
           alert("Message envoyé avec succès")
- 
-        this.form.reset
- 
-      },
-      error: err => {
-        console.log(err);
-        alert("Error")
- 
-      }
-    }); */
+
+       this.form.reset
+        },
+        (error) => {
+          console.error('Erreur lors du téléchargement du fichier', error);
+          
+       alert("Error")
+        }
+      )*/
+   
+    
 
 
 
@@ -148,7 +155,8 @@ export class ComposeComponent implements OnInit {
 
 
 
-  draft(arg: any) {
+  draft() {
+    
 
   }
 }

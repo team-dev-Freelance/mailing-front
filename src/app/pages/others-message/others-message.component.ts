@@ -64,7 +64,7 @@ export class OthersMessageComponent implements OnInit {
     });
   }
   boiteenvoi() {
-    const userId = localStorage.getItem('id');
+    const userId = sessionStorage.getItem('userId');
     const url = `${apiConfig.message.boiteenvoi}`;
     this.serviceService.getResources(url + userId ).subscribe({
       next: res => {
