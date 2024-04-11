@@ -25,6 +25,7 @@ export const api = {
 
   baseUrl: 'http://mailing-back-production.up.railway.app/api/v1/',
  
+  
 
   home: {},
 
