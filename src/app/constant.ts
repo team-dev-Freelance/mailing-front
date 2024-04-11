@@ -23,7 +23,7 @@ if (typeof window !== 'undefined') {
  */
 export const api = {
 
-  baseUrl: 'http://localhost:8080/api/v1/',
+  baseUrl: 'http://mailing-back-production.up.railway.app/api/v1/',
  
 
   home: {},
