@@ -94,7 +94,6 @@ export class ComposeComponent implements OnInit {
    
 
 
-    console.log(authToken);
     
 
        const url = `${apiConfig.message.create}`;

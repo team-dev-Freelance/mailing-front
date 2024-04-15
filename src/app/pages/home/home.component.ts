@@ -42,15 +42,11 @@ important(arg0: any) {
     const url = `${apiConfig.admin.user.getOneId}`;
     this.serviceService.getResource(url, sessionStorage.getItem('userId')).subscribe({
       next: res => {
-        localStorage.setItem('nom',res.body.nom)
-        localStorage.setItem('email',res.body.email)
-
-    
-    
-
-
+        sessionStorage.setItem('nom',res.body.nom)
+        sessionStorage.setItem('email',res.body.email)
       },
     });
+    
 
   }
   unreadMail() {
