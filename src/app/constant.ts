@@ -23,7 +23,7 @@ if (typeof window !== 'undefined') {
  */
 export const api = {
 
-  baseUrl: 'http://mailing-back-production.up.railway.app/api/v1/',
+  baseUrl: 'https://mailing-back-production.up.railway.app/api/v1/',
  
   
 
