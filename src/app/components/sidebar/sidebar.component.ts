@@ -24,6 +24,9 @@ export class SidebarComponent  implements OnInit{
   constructor(private router: Router,private serviceService: ServicesService) {}
   ngOnInit(): void {
     this.role = sessionStorage.getItem('role')
+
+    console.log(this.role);
+    
     this.unreadMail()
   }
 
