@@ -53,9 +53,10 @@ export class ComposeComponent implements OnInit {
 
   onFileSelected(event: any) {
     const file: File = event.target.files[0];
+    this.selectedFile= event.target.files[0];
 
 
-    this.formData.append('file', file);
+   // this.formData.append('file', file);
 
   }
 
@@ -83,9 +84,13 @@ export class ComposeComponent implements OnInit {
       this.formData.append('emailExpediteur', email);
     }
     this.formData.append('userId', this.form.value.toMail);
-    if(this.selectedFile==null)
-    {
+
+    if(this.selectedFile){
+      this.formData.append('file', this.selectedFile);
+    }
+    else{
       this.formData.append('file', '');
+
     }
     this.formData.forEach((value, key) => {
       console.log(key + ': ' + value);
