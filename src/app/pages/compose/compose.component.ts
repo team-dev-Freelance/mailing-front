@@ -88,10 +88,6 @@ export class ComposeComponent implements OnInit {
     if(this.selectedFile){
       this.formData.append('file', this.selectedFile);
     }
-    else{
-      this.formData.append('file', '');
-
-    }
     this.formData.forEach((value, key) => {
       console.log(key + ': ' + value);
     });
